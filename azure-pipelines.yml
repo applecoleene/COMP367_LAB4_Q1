@@ -28,7 +28,7 @@ steps:
 - task: NuGetCommand@2
   inputs:
     command: 'pack'
-    packagesToPack: '**/*.sln'
+    packagesToPack: '**/*.csproj'
     versioningScheme: 'off'
 
 - task: PublishBuildArtifacts@1
