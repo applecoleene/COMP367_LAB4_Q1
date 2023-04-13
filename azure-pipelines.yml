@@ -21,7 +21,7 @@ steps:
   inputs:
     Path: '$(Build.SourcesDirectory)'
     FileNames: '**/*.csproj'
-    InsertAttributes: true
+    InsertAttributes: false
     FileEncoding: 'auto'
     WriteBOM: false
     VersionNumber: '$(Build.BuildNumber)'
@@ -29,3 +29,16 @@ steps:
     LogLevel: 'verbose'
     FailOnWarning: false
     DisableTelemetry: false
+
+- task: NuGetCommand@2
+  inputs:
+    command: 'restore'
+    restoreSolution: '**/*.sln'
+    feedsToUse: 'select'
+    vstsFeed: '75cf2ef5-912f-45c0-85ab-423700255ae9/ded51c1f-1595-4233-9eb0-33b7fa6e9271'
+
+- task: NuGetCommand@2
+  inputs:
+    command: 'pack'
+    packagesToPack: '**/*.csproj'
+    versioningScheme: 'off'
