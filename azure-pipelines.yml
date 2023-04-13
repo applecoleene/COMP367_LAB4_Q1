@@ -43,10 +43,10 @@ steps:
   displayName: 'dotnet build $(buildConfiguration)'
 
 - task: NuGetCommand@2
-  displayName: 'NuGet pack'
   inputs:
-    command: pack
-    versioningScheme: byBuildNumber
+    command: 'pack'
+    packagesToPack: '**/*.csproj'
+    versioningScheme: 'byBuildNumber'
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact'
