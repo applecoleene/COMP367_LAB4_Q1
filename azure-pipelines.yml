@@ -14,18 +14,6 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: Assembly-Info-NetCore@3
-  inputs:
-    Path: '$(Build.SourcesDirectory)'
-    FileNames: '**/*.csproj'
-    InsertAttributes: false
-    FileEncoding: 'auto'
-    WriteBOM: false
-    VersionNumber: '$(Build.BuildNumber)'
-    FileVersionNumber: '$(Build.BuildNumber)'
-    LogLevel: 'verbose'
-    FailOnWarning: false
-    DisableTelemetry: false
 
 - task: NuGetCommand@2
   inputs:
@@ -40,7 +28,7 @@ steps:
 - task: NuGetCommand@2
   inputs:
     command: 'pack'
-    packagesToPack: '**/*.csproj'
+    packagesToPack: '**/*.sln'
     versioningScheme: 'off'
 
 - task: PublishBuildArtifacts@1
